@@ -1,17 +1,49 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180">
-    <link rel="mask-icon" href="/mask-icon.svg" color="#FFFFFF">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#ffffff">
-    <meta name="description" content="ReactUltra - Enterprise-grade React Application Template">
-    <title>ReactUltra</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+  
+  <!-- 主要 SEO 标签 -->
+  <title>ReactUltra - 企业级 React 应用框架</title>
+  <meta name="description" content="ReactUltra 是一个高性能、响应式的企业级 React 应用框架，提供了完整的开发生态系统。" />
+  <meta name="keywords" content="React, TypeScript, Vite, 企业级应用, SPA, 响应式UI" />
+  <meta name="author" content="ReactUltra Team" />
+  
+  <!-- 社交媒体标签 -->
+  <meta property="og:title" content="ReactUltra - 企业级 React 应用框架" />
+  <meta property="og:description" content="高性能、响应式的企业级 React 应用框架" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="/og-image.png" />
+
+  <!-- 主题色 -->
+  <meta name="theme-color" content="#1e40af" />
+  
+  <!-- 预连接字体和API域名以提高加载性能 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  
+  <!-- PWA 相关内容 -->
+  <link rel="manifest" href="/manifest.json" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  
+  <!-- 安全性标头 -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src 'self' https://api.example.com; frame-src 'none';" />
+  <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+  <meta http-equiv="X-Frame-Options" content="DENY" />
+  <meta http-equiv="Permissions-Policy" content="geolocation=(), camera=(), microphone=()" />
+</head>
+<body>
+  <!-- 无JS提示 -->
+  <noscript>
+    <div style="padding: 20px; text-align: center; font-family: system-ui, sans-serif;">
+      <h1 style="color: #dc2626;">请启用 JavaScript</h1>
+      <p>ReactUltra 应用需要 JavaScript 才能运行。请在浏览器设置中启用 JavaScript 并刷新页面。</p>
+    </div>
+  </noscript>
+  
+  <div id="root"></div>
+  <script type="module" src="/src/main.tsx"></script>
+</body>
 </html>
