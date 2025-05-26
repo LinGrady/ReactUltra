@@ -4,16 +4,6 @@ import tailwindcss from '@tailwindcss/vite';
 import path from 'path';
 import { VitePWA } from 'vite-plugin-pwa';
 import tsconfigPaths from 'vite-tsconfig-paths';
-import { imagetools } from 'vite-imagetools';
-import { createHtmlPlugin } from 'vite-plugin-html';
-import prerender from 'vite-plugin-prerender';
-
-// 定义预渲染路由对象类型
-interface RenderedRoute {
-  route: string;
-  html: string;
-  [key: string]: any;
-}
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -29,39 +19,6 @@ export default defineConfig({
     }),
     tailwindcss(),
     tsconfigPaths(),
-    imagetools({
-      defaultDirectives: new URLSearchParams({
-        format: 'webp',
-        quality: '80',
-        width: '1280'
-      }),
-    }),
-    createHtmlPlugin({
-      minify: true,
-      inject: {
-        data: {
-          title: 'ReactUltra - Enterprise Application',
-          description: 'Enterprise-grade React Application Template',
-        },
-      },
-    }),
-    prerender({
-      routes: ['/', '/login'],
-      staticDir: 'dist',
-      postProcess(renderedRoute: RenderedRoute) {
-        // 注入 preload 资源
-        const { html, route } = renderedRoute;
-        const criticalCSSRegex = /<style type="text\/css">(.*?)<\/style>/s;
-        const criticalCSS = html.match(criticalCSSRegex)?.[1] || '';
-        
-        renderedRoute.html = html.replace(
-          /<head>/,
-          `<head><style id="critical-css">${criticalCSS}</style>`
-        );
-        
-        return renderedRoute;
-      }
-    }),
     VitePWA({
       registerType: 'autoUpdate',
       includeAssets: ['favicon.svg', 'robots.txt', 'apple-touch-icon.png'],
@@ -100,6 +57,7 @@ export default defineConfig({
               }
             }
           },
+          // 添加图片缓存策略
           {
             urlPattern: /\.(?:png|jpg|jpeg|svg|gif|webp)$/,
             handler: 'CacheFirst',
