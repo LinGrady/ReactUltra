@@ -4,6 +4,7 @@ import tailwindcss from '@tailwindcss/vite';
 import path from 'path';
 import { VitePWA } from 'vite-plugin-pwa';
 import tsconfigPaths from 'vite-tsconfig-paths';
+import { imagetools } from 'vite-imagetools';
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -19,6 +20,24 @@ export default defineConfig({
     }),
     tailwindcss(),
     tsconfigPaths(),
+    // 图片优化插件
+    imagetools({
+      defaultDirectives: (url) => {
+        // 为不同尺寸生成响应式图片
+        if (url.searchParams.has('responsive')) {
+          return new URLSearchParams({
+            format: 'webp;jpg',
+            w: '480;768;1024;1280;1920',
+            quality: '75'
+          });
+        }
+        // 默认优化
+        return new URLSearchParams({
+          format: 'webp',
+          quality: '75'
+        });
+      }
+    }),
     VitePWA({
       registerType: 'autoUpdate',
       includeAssets: ['favicon.svg', 'robots.txt', 'apple-touch-icon.png'],
